@@ -1,0 +1,11 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+
+{% for field in form %}
+
+    {{ csrf_token }}
+    <p>{{ field }}</p>
+{% endfor %}
+
+{% endblock %}
