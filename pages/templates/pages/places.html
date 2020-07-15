@@ -1,11 +1,38 @@
 {% extends 'pages/base.html' %}
 
 {% block content %}
-
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+    </ul>
+  </div>
+</nav>
+<div class="card-columns" style="margin-top:60px; margin-left:70px;">
 {% for biz in business_data %}
-
-    <p>{{ biz }}</p>
-
+    <div class="card" style="width: 20rem; height: 40rem;">
+    <img src="{{ biz.image_url }}" class="card-img-top" style="height:40%; width: 100%; overflow: hidden;" alt="restaraunt image">
+        <div class="card-body">
+            <h5 class="card-title">{{ biz.name }}</h5>
+            <p class="card-text">
+            {% for title in biz.categories %}
+                {{ title.title }}
+            {% endfor %}
+            </p>
+            <p class="card-text">Location: {{ biz.location.address1 }}, {{ biz.location.city }} {{ biz.location.zip_code}}</p>
+            <p class="card-text">Rating: {{ biz.rating }}</p>
+            <p class="card-text">Phone #: {{ biz.display_phone }} </p>
+            <p class="card-text">Distance: {{ biz.distance }}</p>
+            <a href="{{ biz.url }}" class="btn btn-primary"> Yelp Website</a>
+        </div>
+    </div>
 {% endfor %}
+    <div class="card" style="width: 20rem; height: 30rem;">
+        <form class="" action="{% url 'places' %}" method="post">
+            <button type="button" name="next">Next</button>
+        </form>
+    </div>
+</div>
 
 {% endblock %}

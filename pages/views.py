@@ -9,6 +9,7 @@ from YelpAPI import get_key
 #YELP API Endpoints
 #Business Search URL -- 'https://api.yelp.com/v3/businesses/search'
 
+
 @require_http_methods(["GET"])
 def index(request):
 
@@ -35,10 +36,12 @@ def places(request):
 
             #Define parameters
             Parameters = {'term' : 'food',
-                        'limit': 25,
+                        'limit': 50,
                         'radius' : Dist,
                         'longitude' : Long,
-                        'latitude' : Lat}
+                        'latitude' : Lat,
+                        'sort_by' : 'distance',
+                        'offset' : 0}
 
             #Make a request to yelp API
             yelpRequest = requests.get(url = Endpoint, params = Parameters, headers = Header)
@@ -46,6 +49,5 @@ def places(request):
             #Convert json string to a dictionary
             business_data = yelpRequest.json()
 
-            print(business_data)
 
         return render(request, 'pages/places.html', {'business_data': business_data['businesses']})
