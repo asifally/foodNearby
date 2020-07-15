@@ -2,10 +2,10 @@
 
 {% block content %}
 
-{% for field in form %}
+{% for biz in business_data %}
 
-    {{ csrf_token }}
-    <p>{{ field }}</p>
+    <p>{{ biz }}</p>
+
 {% endfor %}
 
 {% endblock %}
