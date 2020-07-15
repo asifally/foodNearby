@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.views.decorators.http import require_http_methods
 import requests
 from YelpAPI import get_key
+from django.contrib.gis.geoip2 import GeoIP2
 
 #YELP API Endpoints
 #Business Search URL -- 'https://api.yelp.com/v3/businesses/search'
@@ -22,6 +23,8 @@ def places(request):
 
         if request.method == "POST":
 
+
+            #Grab the contents of the form from the home page
             Long = request.POST.get("Longitude")
             Lat = request.POST.get("Latitude")
             Dist = request.POST.get("Distance")
