@@ -1,22 +1,25 @@
 {% extends "pages/base.html" %}
 
 {% block head %}
-<script>
-var x = document.getElementById("demo");
+    <script>
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude;
-}
-</script>
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(long, lat);
+          } else {
+            lat.innerHTML = "Geolocation is not supported by this browser.";
+            long.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
+        function long( str ){
+            var long = document.getElementById("long");
+        	long.innerHTML = position.coords.longitude;
+        }
+        function lat( str ){
+            var lat = document.getElementById("lat");
+        	lat.innerHTML = position.coords.latitude;
+        }
+    </script>
 {% endblock %}
 
 
@@ -36,23 +39,15 @@ function showPosition(position) {
                 <div class="row justify-content-center">
                     <div class="col-4">
                         <div class="form-group">
-                            <label>Location</label>
-                            <input type="text" class="form-control" name="Location" id="Location">
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-4">
-                        <div class="form-group">
                             <label>Longitude</label>
-                            <input type="text" class="form-control" name="Longitude" id="Longitude">
+                            <input type="text" class="form-control" name="Longitude" id="long" onkeypress="long(this.value)">
                         </div>
                     </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-4">
                         <label>Latitude</label>
-                        <input type="text" class="form-control" name="Latitude" id="Latitude">
+                        <input type="text" class="form-control" name="Latitude" id="lat" onkeypress="lat(this.value)">
                     </div>
                 </div>
                 <div class="row justify-content-center">
