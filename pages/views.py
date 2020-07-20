@@ -14,13 +14,13 @@ from django.contrib.gis.geoip2 import GeoIP2
 @require_http_methods(["GET"])
 def index(request):
 
-    #get method
+    #if the form returns a get method, then return the index route
     if request.method == "GET":
         return render(request, 'pages/index.html')
 
 @require_http_methods(["POST"])
 def places(request):
-
+        #When the form on the index.html file is submitted, it's action is post to this route
         if request.method == "POST":
 
 
