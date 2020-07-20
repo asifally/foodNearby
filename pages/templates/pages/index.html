@@ -1,6 +1,8 @@
-{% extends "pages/base.html" %}
+{% extends 'pages/base.html' %}
+{% load static %}
 
 {% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
     <script>
 
         function getLocation() {
@@ -13,56 +15,75 @@
         }
         function long( str ){
             var long = document.getElementById("long");
-        	long.innerHTML = position.coords.longitude;
+            long.innerHTML = position.coords.longitude;
+            console.log(long.innerHTML)
         }
         function lat( str ){
             var lat = document.getElementById("lat");
-        	lat.innerHTML = position.coords.latitude;
+            lat.innerHTML = position.coords.latitude;
+            console.log(lat.innerHTML)
         }
     </script>
 {% endblock %}
 
 
 {% block content %}
-<div class="" style="background:#4CAF50; width: 100%; height: 100%;">
-    <div class="card" style="width: 30rem; height: 30rem;">
-        <form action="{% url 'places' %}" method="post">
-            {% csrf_token %}
-            <div class="container-fluid">
-                <div class="row justify-content-center">
-                    <div class="col-4">
-                        <div class="form-group">
-                            <button type="button" onclick="getLocation()" class="btn btn-success">Use Location</button>
+<div class="home">
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <form action="{% url 'places' %}" method="post">
+                {% csrf_token %}
+                <div class="col-lg-12">
+                    <div class="row justify-content-center">
+                        <div class="col-4">
+                            <div class="form-group" style="text-align: center; margin-top: 5%;">
+                                <button type="button" onclick="getLocation()" class="btn" style="background-color: #137ec6; color:white;">Use Location</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <div class="box">
+                                    <label>Longitude</label>
+                                    <input type="text" class="form-control" name="Longitude" id="long" onkeypress="long(this.value)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <div class="box">
+                                    <label>Latitude</label>
+                                    <input type="text" class="form-control" name="Latitude" id="lat" onkeypress="lat(this.value)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <div class="box">
+                                    <label>Distance</label>
+                                    <input type="text" class="form-control" name="Distance" id="Distance">  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center" style="margin-top:20px;">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <div class="box" style="text-align: center;" >
+                                    <button type="submit" value="submit" class="btn" style="background-color: #137ec6; color:white;">Submit</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="col-4">
-                        <div class="form-group">
-                            <label>Longitude</label>
-                            <input type="text" class="form-control" name="Longitude" id="long" onkeypress="long(this.value)">
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-4">
-                        <label>Latitude</label>
-                        <input type="text" class="form-control" name="Latitude" id="lat" onkeypress="lat(this.value)">
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-4">
-                        <label>Distance</label>
-                        <input type="text" class="form-control" name="Distance" id="Distance">
-                    </div>
-                </div>
-                <div class="row justify-content-center" style="margin-top:20px;">
-                    <div class="col-4">
-                        <button type="submit" value="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </form>
+        
+            </form>   
+        </div>  
     </div>
 </div>
 {% endblock %}

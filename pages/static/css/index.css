@@ -1,0 +1,27 @@
+body 
+{
+    background: url("/static/images/tech.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+input[type=text] 
+{
+    padding:10px;
+    border:0;
+    border-radius:10px;
+    box-shadow:0 0 15px 4px rgba(240, 237, 237, 0.06);
+}
+
+.box
+{
+    color: white;
+}
+
+form
+{
+    margin-top: 10%;
+    background-color: black;
+    width: 40%;
+    border-radius: 25px;
+}

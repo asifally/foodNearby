@@ -1,4 +1,9 @@
 {% extends 'pages/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/places.css' %}">
+{% endblock %}
 
 {% block content %}
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
